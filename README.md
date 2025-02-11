@@ -5,3 +5,6 @@
 # appdevproj
 # appdevproj
 # appdevproj
+# appdevproj
+# appdevproj
+# flaskproj
