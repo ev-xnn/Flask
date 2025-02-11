@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="POST">
+    <input type="text" name="contract_name" placeholder="Artist Name" required>
+    {% if errors.get('username') %}
+    <p class="error-message">{{ errors['name'] }}</p>
+    {% endif %}
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="venue_location" placeholder="Venue Location" required>
+    <input type="text" name="country" placeholder="Country" required>
+    {% if errors.get('username') %}
+    <p class="error-message">{{ errors['country'] }}</p>
+    {% endif %}
+    <input type="text" name="phone_number" placeholder="Phone Number" required>
+    <button type="submit">Add Contract</button>
+</form>
+<ul>
+    {% for contract in contracts %}
+    <li>
+        <strong>{{ contract.name }}</strong> ({{ contract.email }})<br>
+        Venue: {{ contract.venue_location }}, {{ contract.country }}<br>
+        Phone: {{ contract.phone_number }}<br>
+        <a href="{{ url_for('edit_artist_contract', id=contract.id) }}">Edit</a>
+        <a href="{{ url_for('delete_artist_contract', id=contract.id) }}">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

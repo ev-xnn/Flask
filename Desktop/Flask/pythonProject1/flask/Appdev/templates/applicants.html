@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicants</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        table {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: white;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #6c63ff;
+            color: white;
+        }
+        a {
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+        .edit {
+            background-color: #4caf50;
+            color: white;
+        }
+        .delete {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Applicants</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Course</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for applicant in applicants %}
+            <tr>
+                <td>{{ applicant['id'] }}</td>
+                <td>{{ applicant['name'] }}</td>
+                <td>{{ applicant['email'] }}</td>
+                <td>{{ applicant['course'] }}</td>
+                <td>
+                    <a href="/applicant/edit/{{ applicant['id'] }}" class="edit">Edit</a>
+                    <form action="/applicant/delete/{{ applicant['id'] }}" method="POST" style="display:inline;">
+                        <button type="submit" class="delete">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

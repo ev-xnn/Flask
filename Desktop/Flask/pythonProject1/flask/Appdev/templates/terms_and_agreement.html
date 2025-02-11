@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Agreement</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; background-color: #f4f4f4; }
+        .content { max-width: 800px; margin: 0 auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); }
+        h1 { color: #007BFF; }
+        a { display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px; }
+        a:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Terms and Conditions</h1>
+        <p>By signing up for this audition, you agree to the following terms:</p>
+        <ul>
+            <li>All submissions become the property of the company.</li>
+            <li>Applicants must be 18 years or older or have parental consent.</li>
+            <li>Submissions must not violate any copyright laws.</li>
+            <li>All decisions made by the audition committee are final.</li>
+        </ul>
+        <a href="/form">Go Back to Form</a>
+    </div>
+</body>
+</html>

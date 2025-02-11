@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .course {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            background-color: #fff;
+        }
+        .course h2 {
+            color: #6c63ff;
+        }
+        .signup-btn {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #6c63ff;
+            color: white;
+            border-radius: 5px;
+        }
+        .signup-btn:hover {
+            background-color: #574bdb;
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <h1>Find Online Courses by Skills</h1>
+    <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('sustainability') }}">Sustainability</a></li>
+                <li><a href="{{url_for('form_audition') }}">Audition</a></li>
+                <li><a href="{{url_for('course_selection') }}" class="active">Courses</a></li>
+                <li><a href="{{url_for('competition') }}">Competition</a></li>
+                <li><a href="{{url_for('shop') }}">Shop</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+        </header>
+    <div class="course">
+        <h2>Dancing</h2>
+        <p>Express emotions through movement and music.</p>
+        <a class="signup-btn" href="/signup">Sign Up</a>
+    </div>
+
+    <div class="course">
+        <h2>Vocal Training</h2>
+        <p>Enhance your vocal techniques and range.</p>
+        <a class="signup-btn" href="/signup">Sign Up</a>
+    </div>
+
+    <div class="course">
+        <h2>Song Writing</h2>
+        <p>Learn the art of crafting lyrics and conveying emotions through music.</p>
+        <a class="signup-btn" href="/signup">Sign Up</a>
+    </div>
+
+    <div class="course">
+        <h2>Stage Confidence</h2>
+        <p>Overcome your nerves and perform confidently in front of large crowds.</p>
+        <a class="signup-btn" href="/signup">Sign Up</a>
+    </div>
+
+    <div class="course">
+        <h2>Freestyle Techniques</h2>
+        <p>Express creativity and adapt well to your environment through these techniques.</p>
+        <a class="signup-btn" href="/signup">Sign Up</a>
+    </div>
+
+    <div class="course">
+        <h2>Branding/Marketing</h2>
+        <p>Learn how to connect with audiences and build trust as an artist.</p>
+        <a class="signup-btn" href="/signup">Sign Up</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmonique</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        {% block head %}{% endblock %}
+        <nav class="navbar navbar-expand-sm">
+            <div>
+                <ul class="nav nav-pills">
+                    <li class="active">
+                        <a href="{{ url_for('home') }}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('sustainability') }}">Sustainability</a>
+                    </li>
+                    <li>
+                        <a href="{{url_for('form_audition') }}">Audition</a>
+                    </li>
+                    <li>
+                        <a href="{{url_for('course_selection') }}">Courses</a>
+                    </li>
+                    <li>
+                        <a href="{{url_for('competition') }}">Competition</a>
+                    </li>
+                    <li>
+                        <a href="{{url_for('shop') }}">Shop</a>
+                    </li>
+                    <li >
+                        <a href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div>
+        {% block content %}{% endblock %}
+    </div>
+    <script>
+        $(".nav li").on("click", function() {
+            $(".nav li").removeClass("active");
+            $(this).addClass("active");
+        });
+    </script>
+    <footer>
+        <p>&copy; 2025 Harmonique. All rights reserved.</p>
+    </footer>
+</body>
+</html>

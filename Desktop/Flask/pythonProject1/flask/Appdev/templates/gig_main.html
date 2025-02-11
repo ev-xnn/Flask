@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Set character encoding and viewport for responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gig Opportunities</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+
+        /* Styling for the main container */
+        .container {
+            max-width: 800px; /* Maximum width of the container */
+            margin: 50px auto; /* Center the container */
+            padding: 30px; /* Inner padding */
+            text-align: center; /* Center text alignment */
+            background: #ffffff; /* White background */
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+        }
+
+        /* Styling for the main heading */
+
+        /* Styling for the paragraph */
+        p {
+            font-size: 1rem; /* Font size for the paragraph */
+            color: #555; /* Medium gray text color */
+            line-height: 1.8; /* Line spacing for readability */
+            margin-bottom: 30px; /* Space below the paragraph */
+        }
+
+        /* Styling for the options container */
+        .options a {
+            display: inline-block; /* Inline-block for spacing */
+            padding: 12px 20px; /* Padding inside buttons */
+            margin: 10px; /* Space between buttons */
+            background-color: #007bff; /* Blue background color */
+            color: #ffffff; /* White text color */
+            text-decoration: none; /* Remove underline */
+            border-radius: 8px; /* Rounded corners */
+            font-size: 1rem; /* Font size for the buttons */
+            font-weight: bold; /* Bold text */
+            transition: background-color 0.3s ease; /* Smooth color transition on hover */
+        }
+
+        /* Styling for hover state of buttons */
+        .options a:hover {
+            background-color: #0056b3; /* Darker blue background on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Main container for the content -->
+    <div class="container">
+        <!-- Main heading of the page -->
+        <h1>Welcome to Gig Opportunities</h1>
+        <!-- Introductory paragraph -->
+        <p>
+            Explore opportunities to showcase your talent and gain valuable experience.
+            Check out the details below and start your journey with us!
+        </p>
+        <!-- Options section with navigation links -->
+        <div class="options">
+            <a href="/gig_signup">Sign Up for a Gig</a> <!-- Link to sign up for a gig -->
+            <a href="/applicants">View Applicants</a> <!-- Link to view the list of applicants -->
+        </div>
+    </div>
+</body>
+</html>

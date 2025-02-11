@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<h1>Edit Artist Contract</h1>
+<form method="POST">
+    <input type="text" name="contract_name" value="{{ contract.name }}" required>
+    <input type="email" name="email" value="{{ contract.email }}" required>
+    <input type="text" name="venue_location" value="{{ contract.venue_location }}" required>
+    <input type="text" name="country" value="{{ contract.country }}" required>
+    <input type="text" name="phone_number" value="{{ contract.phone_number }}" required>
+    <button type="submit">Save Changes</button>
+</form>
+{% endblock %}

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Set character encoding for proper text display -->
+    <meta charset="UTF-8">
+    <!-- Ensure responsive design for different screen sizes -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Set the title of the web page -->
+    <title>Virtual Competition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Styling for the body element */
+<!--        body {-->
+<!--            font-family: 'Roboto', sans-serif; /* Set the font style */-->
+<!--            background: linear-gradient(to right, #f953c6, #b91d73); /* Gradient background */-->
+<!--            color: #444; /* Default text color */-->
+<!--            margin: 0; /* Remove default margin */-->
+<!--            padding: 0; /* Remove default padding */-->
+<!--        }-->
+
+        /* Styling for the main container */
+        .container {
+            max-width: 800px; /* Set the maximum width of the container */
+            margin: 40px auto; /* Center the container horizontally and add vertical spacing */
+            background: white; /* White background for the container */
+            padding: 30px; /* Inner padding */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+        }
+
+        /* Styling for the main heading */
+<!--        h1 {-->
+<!--            text-align: center; /* Center-align the heading */-->
+<!--            font-size: 2rem; /* Font size for the heading */-->
+<!--            margin-bottom: 20px; /* Space below the heading */-->
+<!--            color: #333; /* Darker text color for the heading */-->
+<!--        }-->
+
+        /* Styling for the form layout */
+        form {
+            display: flex; /* Use flexbox for layout */
+            flex-wrap: wrap; /* Allow wrapping of fields */
+            gap: 20px; /* Space between fields */
+        }
+
+        /* Styling for individual form fields */
+        form div {
+            flex: 1 1 calc(50% - 20px); /* Two-column layout with gap spacing */
+            margin-bottom: 15px; /* Space below each field */
+        }
+
+        /* Styling for full-width fields */
+        form div.full-width {
+            flex: 1 1 100%; /* Make the field span the full width */
+        }
+
+        /* Styling for labels */
+        label {
+            font-weight: bold; /* Bold font for labels */
+            margin-bottom: 5px; /* Space below the label */
+            display: block; /* Ensure labels span the full width */
+            color: #333; /* Darker text color for labels */
+        }
+
+        /* Styling for input, select, and button elements */
+        input, select, button {
+            width: 100%; /* Full width of the element */
+            padding: 12px; /* Inner padding */
+            font-size: 14px; /* Font size */
+            border: 1px solid #ddd; /* Light border */
+            border-radius: 5px; /* Rounded corners */
+            box-sizing: border-box; /* Include padding and border in width */
+        }
+
+        /* Styling for focused input and select elements */
+        input:focus, select:focus {
+            border-color: #007bff; /* Blue border on focus */
+            outline: none; /* Remove default outline */
+        }
+
+        /* Styling for the submit button */
+        button {
+            background-color: #007bff; /* Blue background for the button */
+            color: white; /* White text color */
+            border: none; /* Remove border */
+            cursor: pointer; /* Pointer cursor on hover */
+            padding: 12px 20px; /* Padding inside the button */
+            font-weight: bold; /* Bold text */
+            text-transform: uppercase; /* Uppercase text */
+        }
+
+        /* Hover effect for the submit button */
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Styling for error messages */
+        p.error-message {
+            color: red; /* Red text color for error messages */
+            font-size: 0.9em; /* Smaller font size */
+            margin: 5px 0 0; /* Margin above the error message */
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('sustainability') }}">Sustainability</a></li>
+                <li><a href="{{url_for('form_audition') }}">Audition</a></li>
+                <li><a href="{{url_for('course_selection') }}">Courses</a></li>
+                <li><a href="{{url_for('competition') }}">Competition</a></li>
+                <li><a href="{{url_for('shop') }}">Shop</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Main container for the form -->
+    <div class="container">
+        <!-- Page heading -->
+        <h1>Virtual Competition</h1>
+        <!-- Form for user input -->
+        <form action="" method="POST" enctype="multipart/form-data">
+            <!-- First name field -->
+            <div>
+                <label for="first_name">First Name*</label>
+                <input type="text" id="first_name" name="first_name" value="{{ entry['first_name'] if entry else '' }}" required>
+                {% if errors.get('first_name') %}
+                <p class="error-message">{{ errors['first_name'] }}</p>
+                {% endif %}
+            </div>
+            <!-- Last name field -->
+            <div>
+                <label for="last_name">Last Name*</label>
+                <input type="text" id="last_name" name="last_name" value="{{ entry['last_name'] if entry else '' }}" required>
+                {% if errors.get('last_name') %}
+                <p class="error-message">{{ errors['last_name'] }}</p>
+                {% endif %}
+            </div>
+            <!-- Birth date field -->
+            <div>
+                <label for="birth_date">Birth Date*</label>
+                <input type="date" id="birth_date" name="birth_date" value="{{ entry['birth_date'] if entry else '' }}" required>
+            </div>
+            <!-- Gender dropdown -->
+            <div>
+                <label for="gender">Gender*</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select</option>
+                    <option value="Male" {% if entry and entry['gender'] == 'Male' %}selected{% endif %}>Male</option>
+                    <option value="Female" {% if entry and entry['gender'] == 'Female' %}selected{% endif %}>Female</option>
+                    <option value="Other" {% if entry and entry['gender'] == 'Other' %}selected{% endif %}>Other</option>
+                </select>
+            </div>
+            <!-- Email field -->
+            <div>
+                <label for="email">Email*</label>
+                <input type="email" id="email" name="email" value="{{ entry['email'] if entry else '' }}" required>
+            </div>
+            <!-- Phone number field -->
+            <div>
+                <label for="phone">Phone*</label>
+                <input type="tel" id="phone" name="phone" value="{{ entry['phone'] if entry else '' }}" required>
+                {% if errors.get('phone') %}
+                <p class="error-message">{{ errors['phone'] }}</p>
+                {% endif %}
+            </div>
+            <!-- Address field (full width) -->
+            <div class="full-width">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" value="{{ entry['address'] if entry else '' }}">
+            </div>
+            <!-- City field -->
+            <div>
+                <label for="city">City*</label>
+                <input type="text" id="city" name="city" value="{{ entry['city'] if entry else '' }}" required>
+            </div>
+            <!-- State field -->
+            <div>
+                <label for="state">State</label>
+                <input type="text" id="state" name="state" value="{{ entry['state'] if entry else '' }}">
+            </div>
+            <!-- ZIP field -->
+            <div>
+                <label for="zip">ZIP*</label>
+                <input type="text" id="zip" name="zip" value="{{ entry['zip'] if entry else '' }}" required>
+                {% if errors.get('zip') %}
+                <p class="error-message">{{ errors['zip'] }}</p>
+                {% endif %}
+            </div>
+            <!-- Country dropdown -->
+            <div>
+                <label for="country">Country*</label>
+                <select id="country" name="country" required>
+                    <option value="">Select Country</option>
+                    <option value="Singapore" {% if entry and entry['country'] == 'Singapore' %}selected{% endif %}>Singapore</option>
+                    <option value="Canada" {% if entry and entry['country'] == 'Canada' %}selected{% endif %}>Canada</option>
+                    <option value="UK" {% if entry and entry['country'] == 'UK' %}selected{% endif %}>UK</option>
+                </select>
+            </div>
+            <!-- CV upload field -->
+            <div class="full-width">
+                <label for="cv">Upload CV*</label>
+                <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+            </div>
+            <!-- Submit button -->
+            <div class="full-width">
+                <button type="submit">
+                    {% if entry %}
+                        Update
+                    {% else %}
+                        Register
+                    {% endif %}
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

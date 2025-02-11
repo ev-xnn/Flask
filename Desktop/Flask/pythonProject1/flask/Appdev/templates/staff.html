@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Staff Management</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('sustainability') }}">Sustainability</a></li>
+                <li><a href="{{url_for('form_audition') }}">Audition</a></li>
+                <li><a href="{{url_for('course_selection') }}">Courses</a></li>
+                <li><a href="{{url_for('competition') }}">Competition</a></li>
+                <li><a href="{{url_for('shop') }}">Shop</a></li>
+                <li><a href="{{url_for('view_audition') }}">View Audition</a></li>
+                <li><a href="{{ url_for('view_applicants_courses') }}">View Course</a></li>
+                <li><a href="{{url_for('artist_contract') }}">Contract</a></li>
+                <li><a href="{{url_for('live_calendar') }}">Calendar</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Add New Product</h2>
+        <form action="/staff" method="POST">
+            <input type="text" name="product_name" placeholder="Product Name" required>
+            <input type="number" step="0.01" name="product_price" placeholder="Price" required>
+            <input type="text" name="product_image" placeholder="Image URL" required>
+            <button type="submit">Add Product</button>
+        </form>
+
+        <h2>Manage Products</h2>
+        <div class="products">
+            {% for product in products %}
+            <div class="product">
+                <img src="{{ product['image'] }}" alt="{{ product['name'] }}">
+                <h3>{{ product['name'] }}</h3>
+                <p>Price: ${{ product['price'] }}</p>
+                <form action="/update-product" method="POST" style="margin-bottom: 5px;">
+                    <input type="hidden" name="product_id" value="{{ product['id'] }}">
+                    <input type="text" name="product_name" value="{{ product['name'] }}" required>
+                    <input type="number" step="0.01" name="product_price" value="{{ product['price'] }}" required>
+                    <input type="text" name="product_image" value="{{ product['image'] }}" required>
+                    <button type="submit">Update</button>
+                </form>
+                <form action="/delete-product" method="POST">
+                    <input type="hidden" name="product_id" value="{{ product['id'] }}">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Harmonique. All rights reserved.</p>
+    </footer>
+</body>
+</html>

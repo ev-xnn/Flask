@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Your Shop</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop">Shop</a></li>
+                <li><a href="/cart">Cart</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <h1>Verify OTP</h1>
+            <form action="/verify-otp/{{ username }}" method="POST">
+                <input type="text" name="otp" placeholder="Enter OTP" required>
+                <input type="password" name="new_password" placeholder="Enter new password" required>
+                <button type="submit">Reset Password</button>
+            </form>
+            <p>Didn't receive an OTP? <a href="/forgot-password">Request again</a></p>
+        </div>
+    </main>
+
+    <footer>
+    <p>&copy; 2024 Harmonique. All Rights Reserved.</p>
+</footer>
+</body>
+</html>

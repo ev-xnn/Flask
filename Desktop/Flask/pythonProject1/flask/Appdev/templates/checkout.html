@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block head %}
+<h1>Checkout</h1>
+{% endblock %}
+{% block content %}
+    <main>
+        <h1>Confirm Your Order</h1>
+
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <ul>
+                {% for item in cart %}
+                <li>
+                    <strong>{{ item['name'] }}</strong>: ${{ item['price'] }} x {{ item['quantity'] }} = ${{ item['total'] }}
+                </li>
+                {% endfor %}
+            </ul>
+            <h3>Total: ${{ total }}</h3>
+        </div>
+
+        <div class="checkout-form">
+            <h2>Payment Details</h2>
+            <form action="/checkout" method="POST">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                <label for="address">Shipping Address:</label>
+                <input id="address" name="address" placeholder="Enter your address" required>
+
+                <label for="card">Credit Card Number:</label>
+                <input type="text" id="card" name="card" placeholder="Enter your card number" required>
+                {% if errors.get('card') %}
+                <p class="error-message">{{ errors['card'] }}</p>
+                {% endif %}
+                <label for="expiry">Expiry Date:</label>
+                <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required>
+                {% if errors.get('expiry') %}
+                <p class="error-message">{{ errors['expiry'] }}</p>
+                {% endif %}
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" placeholder="CVV" required>
+                {% if errors.get('cvv') %}
+                <p class="error-message">{{ errors['cvv'] }}</p>
+                {% endif %}
+                {% if errors.get('unfilled') %}
+                <p class="error-message">{{ errors['unfilled'] }}</p>
+                {% endif %}
+                <button  class="place-order-btn" type="submit">Place Order</button>
+            </form>
+        </div>
+    </main>
+{% endblock %}

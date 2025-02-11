@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<h1>Edit Event</h1>
+
+<form method="POST">
+    <label>Event Name:</label>
+    <input type="text" name="event_name" value="{{ event.name }}" required>
+
+    <label>Event Date:</label>
+    <input type="date" name="event_date" value="{{ event.event_date }}" required>
+
+    <label>Start Time:</label>
+    <input type="time" name="start_time" value="{{ event.start_time }}" required>
+
+    <label>End Time:</label>
+    <input type="time" name="end_time" value="{{ event.end_time }}" required>
+
+    <button type="submit">Save Changes</button>
+</form>
+{% endblock %}

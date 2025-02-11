@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Set character encoding and viewport for responsive design -->
+    <meta charset="UTF-8"> <!-- Ensure proper character rendering -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive layout for all devices -->
+    <title>Facilitate Competitions</title> <!-- Page title displayed on the browser tab -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Styling for the body to set font, background gradient, and default margins */
+        main {
+            background: linear-gradient(to right, #ff9966, #ff5e62); /* Gradient background from orange to red */
+        }
+
+        /* Styling for the main container */
+        .container {
+            max-width: 1000px; /* Limit the maximum width of the container */
+            margin: 40px auto; /* Center the container horizontally and add vertical spacing */
+            background: white; /* Set a white background for the container */
+            padding: 30px; /* Add internal padding */
+            border-radius: 10px; /* Add rounded corners for aesthetics */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
+        }
+
+        /* Styling for the main heading */
+        main h1 {
+            text-align: center; /* Center-align the heading text */
+            font-size: 2rem; /* Set the font size to 2 rem */
+            margin-bottom: 20px; /* Add spacing below the heading */
+            color: #333; /* Set the text color to a darker gray */
+        }
+
+        /* Styling for the introductory paragraph */
+        p {
+            text-align: center; /* Center-align the paragraph text */
+            line-height: 1.6; /* Set line spacing for better readability */
+            margin-bottom: 30px; /* Add spacing below the paragraph */
+        }
+
+        /* Flexbox styling for the competitions section */
+        .competitions {
+            display: flex; /* Use flexbox for a flexible layout */
+            justify-content: space-around; /* Evenly distribute competition cards */
+            flex-wrap: wrap; /* Allow cards to wrap to the next line if needed */
+            gap: 20px; /* Add spacing between the cards */
+        }
+
+        /* Styling for individual competition cards */
+        .competition-card {
+            background: #f9f9f9; /* Light gray background for cards */
+            padding: 20px; /* Add internal padding */
+            border-radius: 10px; /* Add rounded corners for aesthetics */
+            width: 45%; /* Set the width of each card */
+            text-align: center; /* Center-align the content inside the card */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            transition: transform 0.3s ease; /* Smooth scaling effect on hover */
+        }
+
+        /* Scale up the card slightly when hovered */
+        .competition-card:hover {
+            transform: scale(1.05); /* Slightly increase the size for a hover effect */
+        }
+
+        /* Styling for card headings */
+        .competition-card h2 {
+            font-size: 1.5rem; /* Set font size for headings inside the cards */
+            margin-bottom: 10px; /* Add spacing below the heading */
+            color: #444; /* Use a medium gray color for the heading text */
+        }
+
+        /* Styling for card paragraphs */
+        .competition-card p {
+            font-size: 1rem; /* Set font size for paragraphs inside the cards */
+            margin-bottom: 20px; /* Add spacing below the paragraph */
+        }
+
+        /* Styling for card buttons */
+        .competition-card a {
+            display: inline-block; /* Display as an inline-block element for better spacing */
+            text-decoration: none; /* Remove underline from the link */
+            background-color: #007bff; /* Set blue background color for the button */
+            color: white; /* Use white text color for contrast */
+            padding: 10px 20px; /* Add padding inside the button */
+            border-radius: 5px; /* Add rounded corners */
+            font-weight: bold; /* Make the text bold */
+        }
+
+        /* Change button color on hover */
+        .competition-card a:hover {
+            background-color: #0056b3; /* Use a darker blue color on hover */
+        }
+
+        /* Styling for the link to the about page */
+        .about-link {
+            display: block; /* Make the link a block element for better clickability */
+            text-align: center; /* Center-align the link text */
+            margin-top: 30px; /* Add spacing above the link */
+            text-decoration: none; /* Remove underline from the link */
+            font-size: 1rem; /* Set the font size for the link */
+            color: #007bff; /* Use blue color for the link text */
+            font-weight: bold; /* Make the link text bold */
+        }
+
+        /* Add underline on hover for the about link */
+        .about-link:hover {
+            text-decoration: underline; /* Add underline when the link is hovered over */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header section at the top of the page -->
+    <header>
+        <h1>Facilitate Competitions</h1> <!-- Text displayed in the header -->
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('sustainability') }}">Sustainability</a></li>
+                <li><a href="{{url_for('form_audition') }}">Audition</a></li>
+                <li><a href="{{url_for('course_selection') }}">Courses</a></li>
+                <li><a href="{{url_for('competition') }}" class="active">Competition</a></li>
+                <li><a href="{{url_for('shop') }}">Shop</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+    <!-- Main container for content -->
+    <div class="container">
+        <!-- Main heading of the page -->
+        <h1>Welcome to the Competition Hub</h1>
+        <!-- Introductory paragraph -->
+        <p>
+            Explore opportunities to showcase your talent and gain valuable feedback through our virtual and physical competitions.
+        </p>
+        <!-- Section containing competition cards -->
+        <div class="competitions">
+            <!-- Card for virtual competition -->
+            <div class="competition-card">
+                <h2>Virtual Competition</h2> <!-- Heading for the virtual competition card -->
+                <p>Compete online from anywhere.</p> <!-- Description for the virtual competition -->
+                <a href="/virtual">Join Virtual Competition</a> <!-- Link to join the virtual competition -->
+            </div>
+            <!-- Card for physical competition -->
+            <div class="competition-card">
+                <h2>Physical Competition</h2> <!-- Heading for the physical competition card -->
+                <p>Perform live and impress the audience.</p> <!-- Description for the physical competition -->
+                <a href="/physical">Join Physical Competition</a> <!-- Link to join the physical competition -->
+            </div>
+        </div>
+        <!-- Link to learn more about competitions -->
+        <a href="/about_competitions" class="about-link">Learn more about our competitions</a> <!-- Link to the about competitions page -->
+    </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Set character encoding and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicants List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Styling for the body */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font style */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            background: linear-gradient(to bottom, #ece9e6, #ffffff); /* Background gradient */
+        }
+
+        /* Styling for the main container */
+        .container {
+            max-width: 1200px; /* Set maximum width of the container */
+            margin: 50px auto; /* Center the container horizontally and add vertical spacing */
+            padding: 20px; /* Inner padding */
+            background: #ffffff; /* White background */
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+        }
+
+        /* Styling for the heading */
+        h1 {
+            text-align: center; /* Center the heading text */
+            color: #333; /* Darker text color */
+            font-size: 2rem; /* Font size */
+            margin-bottom: 30px; /* Space below the heading */
+            border-bottom: 2px solid #007bff; /* Blue underline */
+            display: inline-block; /* Inline-block for proper alignment */
+            padding-bottom: 5px; /* Space below the text */
+        }
+
+        /* Styling for the table */
+        table {
+            width: 100%; /* Full width of the container */
+            border-collapse: collapse; /* Remove default table borders */
+            margin: 20px 0; /* Space above and below the table */
+            font-size: 0.95rem; /* Font size for table text */
+            color: #333; /* Text color */
+        }
+
+        /* Styling for table headers and cells */
+        th, td {
+            border: 1px solid #ddd; /* Light border for cells */
+            padding: 12px; /* Padding inside cells */
+            text-align: center; /* Center align text */
+        }
+
+        /* Styling for table headers */
+        th {
+            background-color: #007bff; /* Blue background */
+            color: white; /* White text color */
+            font-weight: bold; /* Bold font */
+        }
+
+        /* Alternate row styling for better readability */
+        tr:nth-child(even) {
+            background-color: #f7f9fc; /* Light background color for even rows */
+        }
+
+        /* Highlight row on hover */
+        tr:hover {
+            background-color: #eaf4ff; /* Light blue background on hover */
+            transition: background-color 0.3s ease; /* Smooth transition effect */
+        }
+
+        /* Styling for action buttons */
+        .actions {
+            display: flex; /* Use flexbox for button layout */
+            justify-content: center; /* Center align buttons */
+            gap: 10px; /* Space between buttons */
+        }
+
+        /* Styling for individual action buttons */
+        .actions button {
+            padding: 8px 12px; /* Padding for buttons */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            color: white; /* White text color */
+            cursor: pointer; /* Pointer cursor on hover */
+            font-size: 0.9rem; /* Font size */
+        }
+
+        /* Styling for the edit button */
+        .edit-btn {
+            background-color: #28a745; /* Green background color */
+        }
+
+        /* Styling for the delete button */
+        .delete-btn {
+            background-color: #dc3545; /* Red background color */
+        }
+
+        /* Styling for the navigation links */
+        .links {
+            text-align: center; /* Center align links */
+            margin-top: 20px; /* Space above the links */
+        }
+
+        /* Styling for individual links */
+        .links a {
+            margin: 0 15px; /* Horizontal spacing between links */
+            text-decoration: none; /* Remove underline */
+            color: #007bff; /* Blue text color */
+            font-weight: bold; /* Bold font */
+        }
+
+        /* Add underline on hover for links */
+        .links a:hover {
+            text-decoration: underline; /* Underline text on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Main container for the applicants list -->
+    <div class="container">
+        <!-- Heading for the page -->
+        <h1>Applicants List</h1>
+        <!-- Table displaying applicant data -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th> <!-- Column for applicant ID -->
+                    <th>First Name</th> <!-- Column for first name -->
+                    <th>Last Name</th> <!-- Column for last name -->
+                    <th>Birth Date</th> <!-- Column for birth date -->
+                    <th>Gender</th> <!-- Column for gender -->
+                    <th>Email</th> <!-- Column for email -->
+                    <th>Phone</th> <!-- Column for phone number -->
+                    <th>Actions</th> <!-- Column for action buttons -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through each applicant and display their data -->
+                {% for applicant in applicants %}
+                <tr>
+                    <td>{{ applicant['id'][:8] }}...</td> <!-- Display shortened ID -->
+                    <td>{{ applicant['first_name'] }}</td> <!-- Display first name -->
+                    <td>{{ applicant['last_name'] }}</td> <!-- Display last name -->
+                    <td>{{ applicant['birth_date'] }}</td> <!-- Display birth date -->
+                    <td>{{ applicant['gender'] }}</td> <!-- Display gender -->
+                    <td>{{ applicant['email'] }}</td> <!-- Display email -->
+                    <td>{{ applicant['phone'] }}</td> <!-- Display phone number -->
+                    <td class="actions"> <!-- Action buttons for edit and delete -->
+                        <a href="/edit/{{ applicant['id'] }}">
+                            <button class="edit-btn">Edit</button> <!-- Edit button -->
+                        </a>
+                        <a href="/delete/{{ applicant['id'] }}">
+                            <button class="delete-btn">Delete</button> <!-- Delete button -->
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- Navigation links below the table -->
+        <div class="links">
+            <a href="/">Back to Signup</a> | <!-- Link to go back to signup page -->
+            <a href="/about">About Us</a> <!-- Link to the about page -->
+        </div>
+    </div>
+</body>
+</html>

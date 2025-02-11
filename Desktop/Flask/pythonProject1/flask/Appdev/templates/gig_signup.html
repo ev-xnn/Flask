@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Set character encoding for proper text display -->
+    <meta charset="UTF-8">
+    <!-- Ensure responsive design for different screen sizes -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Set the title of the web page -->
+    <title>Gig Signup Form</title>
+    <!-- Add Bootstrap CSS for predefined styles and responsive design -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+
+        /* Styling for the main container */
+        .container {
+            max-width: 700px; /* Set the maximum width for the container */
+            margin: 50px auto; /* Center the container and add vertical spacing */
+            background: #fff; /* Set a white background */
+            padding: 30px 40px; /* Add padding inside the container */
+            border-radius: 12px; /* Add rounded corners */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Add a shadow for depth */
+        }
+
+        /* Styling for the main heading */
+        h1 {
+            text-align: center; /* Center-align the heading */
+            margin-bottom: 20px; /* Add space below the heading */
+            font-size: 2rem; /* Set font size */
+            color: #333; /* Set a darker text color */
+        }
+
+        /* Styling for the form layout */
+        form {
+            display: grid; /* Use grid layout for form elements */
+            grid-template-columns: 1fr 1fr; /* Create a two-column layout */
+            gap: 20px; /* Add spacing between grid items */
+        }
+
+        /* Styling for labels */
+        label {
+            font-weight: bold; /* Make the label text bold */
+            margin-bottom: 5px; /* Add space below the label */
+            display: block; /* Ensure the label spans the full width */
+        }
+
+        /* Styling for input fields, select dropdowns, and buttons */
+        input, select, button {
+            width: 100%; /* Set the width to occupy the full available space */
+            padding: 10px; /* Add padding inside the elements */
+            font-size: 14px; /* Set the font size */
+            border: 1px solid #ddd; /* Add a light gray border */
+            border-radius: 8px; /* Add rounded corners */
+            box-sizing: border-box; /* Include padding and border in the element width */
+        }
+
+        /* Styling for focused input and select elements */
+        input:focus, select:focus {
+            border-color: #007bff; /* Change border color to blue on focus */
+            outline: none; /* Remove the default outline */
+        }
+
+        /* Styling for the submit button */
+        button {
+            grid-column: span 2; /* Span the button across both columns */
+            padding: 12px 0; /* Add vertical padding */
+            background-color: #007bff; /* Set the button background color to blue */
+            color: white; /* Set the text color to white */
+            font-size: 16px; /* Increase font size for emphasis */
+            font-weight: bold; /* Make the text bold */
+            border: none; /* Remove the default border */
+            cursor: pointer; /* Change the cursor to a pointer on hover */
+            border-radius: 8px; /* Add rounded corners */
+            transition: background-color 0.3s ease; /* Smooth transition for background color */
+        }
+
+        /* Hover effect for the submit button */
+        button:hover {
+            background-color: #0056b3; /* Change to a darker blue on hover */
+        }
+
+        /* Styling for full-width fields */
+        .full-width {
+            grid-column: span 2; /* Span the element across both columns */
+        }
+
+        /* Styling for form fields */
+        .form-field {
+            display: flex; /* Use flexbox layout for field alignment */
+            flex-direction: column; /* Stack the label and input vertically */
+        }
+    </style>
+</head>
+<body>
+    <!-- Main container for the signup form -->
+    <div class="container">
+        <!-- Main heading of the page -->
+        <h1>Gig Sign Up</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('sustainability') }}">Sustainability</a></li>
+                <li><a href="{{url_for('form_audition') }}">Audition</a></li>
+                <li><a href="{{url_for('course_selection') }}">Courses</a></li>
+                <li><a href="{{url_for('competition') }}">Competition</a></li>
+                <li><a href="{{url_for('shop') }}">Shop</a></li>
+                <li><a href="{{url_for('gig') }}" class="active">Gigs</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+        <!-- Form for user input -->
+        <form action="{{ url_for('edit_applicant', applicant_id=applicant['id']) if applicant else '/add' }}" method="POST">
+            <!-- First Name field -->
+            <div class="form-field">
+                <label for="first_name">First Name*</label>
+                <input type="text" id="first_name" name="first_name" value="{{ applicant['first_name'] if applicant else '' }}" required>
+            </div>
+            <!-- Last Name field -->
+            <div class="form-field">
+                <label for="last_name">Last Name*</label>
+                <input type="text" id="last_name" name="last_name" value="{{ applicant['last_name'] if applicant else '' }}" required>
+            </div>
+            <!-- Birth Date field -->
+            <div class="form-field">
+                <label for="birth_date">Birth Date*</label>
+                <input type="date" id="birth_date" name="birth_date" value="{{ applicant['birth_date'] if applicant else '' }}" required>
+            </div>
+            <!-- Gender dropdown -->
+            <div class="form-field">
+                <label for="gender">Gender*</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select</option>
+                    <option value="Male" {% if applicant and applicant['gender'] == 'Male' %}selected{% endif %}>Male</option>
+                    <option value="Female" {% if applicant and applicant['gender'] == 'Female' %}selected{% endif %}>Female</option>
+                    <option value="Other" {% if applicant and applicant['gender'] == 'Other' %}selected{% endif %}>Other</option>
+                </select>
+            </div>
+            <!-- Username field -->
+            <div class="form-field">
+                <label for="username">Username*</label>
+                <input type="text" id="username" name="username" value="{{ applicant['username'] if applicant else '' }}" required>
+            </div>
+            <!-- Email field -->
+            <div class="form-field">
+                <label for="email">Email*</label>
+                <input type="email" id="email" name="email" value="{{ applicant['email'] if applicant else '' }}" required>
+            </div>
+            <!-- Phone number field -->
+            <div class="form-field">
+                <label for="phone">Phone*</label>
+                <input type="tel" id="phone" name="phone" value="{{ applicant['phone'] if applicant else '' }}" required>
+            </div>
+            <!-- Address field (full width) -->
+            <div class="form-field full-width">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" value="{{ applicant['address'] if applicant else '' }}">
+            </div>
+            <!-- City field -->
+            <div class="form-field">
+                <label for="city">City*</label>
+                <input type="text" id="city" name="city" value="{{ applicant['city'] if applicant else '' }}" required>
+            </div>
+            <!-- State field -->
+            <div class="form-field">
+                <label for="state">State</label>
+                <input type="text" id="state" name="state" value="{{ applicant['state'] if applicant else '' }}">
+            </div>
+            <!-- ZIP field -->
+            <div class="form-field">
+                <label for="zip">ZIP*</label>
+                <input type="text" id="zip" name="zip" value="{{ applicant['zip'] if applicant else '' }}" required>
+            </div>
+            <!-- Country dropdown -->
+            <div class="form-field">
+                <label for="country">Country*</label>
+                <select id="country" name="country" required>
+                    <option value="">Select Country</option>
+                    <option value="Singapore" {% if applicant and applicant['country'] == 'Singapore' %}selected{% endif %}>Singapore</option>
+                    <option value="Canada" {% if applicant and applicant['country'] == 'Canada' %}selected{% endif %}>Canada</option>
+                    <option value="UK" {% if applicant and applicant['country'] == 'UK' %}selected{% endif %}>UK</option>
+                </select>
+            </div>
+            <!-- Submit button -->
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+</html>

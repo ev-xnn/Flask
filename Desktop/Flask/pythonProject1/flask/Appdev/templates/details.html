@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Account Details</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('sustainability') }}">Sustainability</a></li>
+                <li><a href="{{url_for('form_audition') }}">Audition</a></li>
+                <li><a href="{{url_for('course_selection') }}">Courses</a></li>
+                <li><a href="{{url_for('competition') }}">Competition</a></li>
+                <li><a href="{{url_for('shop') }}">Shop</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+        </nav>
+    </header>
+    <main>
+        <h2>Edit, Delete, or Update Account Details</h2>
+
+        <!-- Display users -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for username, details in users.items() %}
+                <tr>
+                    <td>{{ username }}</td>
+                    <td>{{ details['password'] }}</td>
+                    <td>{{ details['role'] }}</td>
+                    <td>
+                        <!-- Update form -->
+                        <form method="post" style="display: inline-block;">
+                            <input type="hidden" name="action" value="update">
+                            <input type="hidden" name="username" value="{{ username }}">
+                            <input type="text" name="password" placeholder="New Password">
+                            <input type="text" name="role" placeholder="New Role">
+                            <button type="submit">Update</button>
+                        </form>
+                        <!-- Delete form -->
+                        <form method="post" style="display: inline-block;">
+                            <input type="hidden" name="action" value="delete">
+                            <input type="hidden" name="username" value="{{ username }}">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Create user form -->
+        <h3>Create New User</h3>
+        <form method="post">
+            <input type="hidden" name="action" value="create">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="text" name="password" placeholder="Password" required>
+            <input type="text" name="role" placeholder="Role" required>
+            <button type="submit">Create</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2025 Your Website Name</p>
+    </footer>
+</body>
+</html>

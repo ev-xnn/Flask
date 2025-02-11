@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block head %}
+<h1>Shop</h1>
+{% endblock %}
+{% block content %}
+    <main>
+        <h1>Welcome to the Shop</h1>
+        <div class="products">
+            {% for product in products %}
+            <div class="product">
+                <img src="{{ product['image'] }}" alt="{{ product['name'] }}">
+                <h3>{{ product['name'] }}</h3>
+                <p>Price: ${{ product['price'] }}</p>
+                <form class="add-to-cart-form" method="POST">
+                    <input type="hidden" name="product_id" value="{{ product['id'] }}">
+                    <input type="number" name="quantity" value="1" min="1">
+                    <button type="button" class="add-to-cart-btn">Add to Cart</button>
+                </form>
+
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Your Shop. All rights reserved.</p>
+    </footer>
+<script>
+    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            const form = this.closest('.add-to-cart-form');
+            const formData = new FormData(form);
+
+            fetch('/add-to-cart', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Product has been added to your cart!");
+                } else if (response.status === 404) {
+                    alert("Error: Product not found.");
+                } else {
+                    alert("An unexpected error occurred. Please try again.");
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Specify the document type and language as English -->
+    <!-- Set character encoding to UTF-8 for proper text display -->
+    <meta charset="UTF-8">
+    <!-- Ensure responsive design for different screen sizes -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Set the title of the web page -->
+    <title>About Competitions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Styling for the body to set font, background gradient, and margin/padding */
+
+        /* Styling for the container to center and style the content */
+        .container {
+            max-width: 800px; /* Set the maximum width for the container */
+            margin: 50px auto; /* Center the container horizontally and add vertical spacing */
+            background: white; /* Set a white background for the content */
+            padding: 30px; /* Add inner spacing within the container */
+            border-radius: 10px; /* Add rounded corners for aesthetics */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
+        }
+
+        /* Styling for the main heading */
+        h1 {
+            text-align: center; /* Center the heading text */
+            font-size: 2rem; /* Set the font size to 2 rem */
+            margin-bottom: 20px; /* Add spacing below the heading */
+            color: #333; /* Set a darker gray color for the heading text */
+        }
+
+        /* Styling for paragraphs */
+        p {
+            line-height: 1.8; /* Increase line spacing for better readability */
+            font-size: 1rem; /* Set the font size to 1 rem */
+            margin-bottom: 20px; /* Add spacing below each paragraph */
+        }
+
+        /* Styling for unordered lists */
+        ul {
+            margin-left: 20px; /* Add indentation to the list */
+            font-size: 1rem; /* Set the font size to 1 rem */
+            line-height: 1.8; /* Increase line spacing for list items */
+        }
+
+        /* Styling for list items */
+        li {
+            margin-bottom: 10px; /* Add spacing below each list item */
+        }
+
+        /* Styling for the back link */
+        .back-link {
+            display: block; /* Make the link a block element for easy clicking */
+            text-align: center; /* Center-align the link text */
+            margin-top: 20px; /* Add spacing above the link */
+            text-decoration: none; /* Remove underline from the link */
+            font-size: 1rem; /* Set the font size to 1 rem */
+            color: #007bff; /* Set the text color to blue */
+            font-weight: bold; /* Make the text bold for emphasis */
+        }
+
+        /* Add underline on hover for the back link */
+        .back-link:hover {
+            text-decoration: underline; /* Add underline when the link is hovered over */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('sustainability') }}">Sustainability</a></li>
+                <li><a href="{{url_for('form_audition') }}">Audition</a></li>
+                <li><a href="{{url_for('course_selection') }}">Courses</a></li>
+                <li><a href="{{url_for('competition') }}">Competition</a></li>
+                <li><a href="{{url_for('shop') }}">Shop</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    <!-- Main container for the content -->
+    <div class="container">
+        <!-- Main heading of the page -->
+        <h1>About Competitions</h1>
+        <!-- First paragraph about organizing competitions -->
+        <p>
+            To further support the community in helping aspiring artists find a place to start their career, we also want to organize competitions where aspiring artists can perform and compete.
+        </p>
+        <!-- Second paragraph about benefits and feedback from competitions -->
+        <p>
+            These competitions can build the confidence of artists as they are performing to audiences and judges. Through these competitions, experts and the audience can provide feedback to the artist, which allows them to improve and try again the next time we organize a competition. Winners of this competition can get the opportunity to work with us.
+        </p>
+        <!-- Third paragraph about how to participate in competitions -->
+        <p>
+            People who are interested can sign up through our website using a form that will be announced before we organize a competition. People can get to know about the competition through notifications.
+        </p>
+        <!-- Subheading for features -->
+        <h2>Features:</h2>
+        <!-- List of features of the competitions -->
+        <ul>
+            <li>Form for people to sign up for competitions</li> <!-- List item for the form feature -->
+            <li>Notification to let people know if there is a competition</li> <!-- List item for the notification feature -->
+        </ul>
+        <!-- Back link to navigate to the facilitate page -->
+        <a href="/" class="back-link">Back to Home</a> <!-- Link to go back to the homepage -->
+    </div>
+</body>
+</html>

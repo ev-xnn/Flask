@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+    form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: black;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input, select, textarea, button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            display: none; /* Hidden by default */
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+
+                /* Hide number input arrows in all browsers */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+            appearance: textfield; /* Ensures compatibility across browsers */
+        }
+
+    </style>
+</head>
+<h1>Book the music room</h1>
+
+<!-- Form to Add Events -->
+<form method="POST">
+    <input type="text" name="event_name" placeholder="New Event Name" required>
+    <input type="date" name="event_date" required>
+    <input type="time" name="start_time" required>
+    <input type="time" name="end_time" required>
+
+    <button type="submit">Add Event</button>
+</form>
+
+<!-- List of Existing Events -->
+<ul>
+    {% for event in events %}
+    <li>
+        {{ event.name }} | {{ event.event_date }} | {{ event.start_time }} - {{ event.end_time }} |
+        <a href="{{ url_for('edit_live_calendar_event', id=event.id) }}">Edit</a>
+        <a href="{{ url_for('delete_live_calendar_event', id=event.id) }}">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

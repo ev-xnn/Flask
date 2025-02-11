@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Your Cart</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('sustainability') }}">Sustainability</a></li>
+                <li><a href="{{url_for('form_audition') }}">Audition</a></li>
+                <li><a href="{{url_for('course_selection') }}">Courses</a></li>
+                <li><a href="{{url_for('competition') }}">Competition</a></li>
+                <li><a href="{{url_for('shop') }}">Shop</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Your Cart</h1>
+        <div class="cart-items">
+            {% for item in cart %}
+            <div class="cart-item">
+                <img src="{{ item['image'] }}" alt="{{ item['name'] }}">
+                <div class="cart-details">
+                    <h3>{{ item['name'] }}</h3>
+                    <p>Price: ${{ item['price'] }}</p>
+                    <p>Quantity: {{ item['quantity'] }}</p>
+                    <p>Total: ${{ item['total'] }}</p>
+                </div>
+                <div class="cart-actions">
+                    <form action="/update-cart" method="POST" style="margin-bottom: 5px;">
+                        <input type="hidden" name="product_id" value="{{ item['product_id'] }}">
+                        <input type="number" name="quantity" value="{{ item['quantity'] }}" min="1" required>
+                        <button type="submit">Update</button>
+                    </form>
+                    <form action="/delete-from-cart" method="POST">
+                        <input type="hidden" name="product_id" value="{{ item['product_id'] }}">
+                        <button type="submit">Remove</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <h2>Total: ${{ total }}</h2>
+
+        <div class="checkout">
+            <form action="/checkout" method="POST">
+                <button type="submit">Proceed to Checkout</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Harmonique Shop. All rights reserved.</p>
+    </footer>
+</body>
+</html>

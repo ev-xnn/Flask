@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Set character encoding for proper text display -->
+    <meta charset="UTF-8">
+    <!-- Ensure responsive design for different screen sizes -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Set the dynamic title based on competition type -->
+    <title>{{ competition_type.capitalize() }} Competition Entries</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+
+        /* Styling for the main container */
+        .container {
+            max-width: 1100px; /* Set maximum width for the container */
+            margin: 40px auto; /* Center the container horizontally with vertical spacing */
+            background: #fff; /* White background for better contrast */
+            padding: 30px; /* Inner padding for content */
+            border-radius: 10px; /* Add rounded corners */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Add subtle shadow for depth */
+        }
+
+        /* Styling for the main heading */
+        h1 {
+            text-align: center; /* Center-align the heading text */
+            font-size: 2rem; /* Set font size */
+            margin-bottom: 20px; /* Add space below the heading */
+            color: #333; /* Darker text color for better visibility */
+        }
+
+        /* Styling for the table */
+        table {
+            width: 100%; /* Set the table to full width of the container */
+            border-collapse: collapse; /* Remove default spacing between table cells */
+            margin-top: 20px; /* Add space above the table */
+        }
+
+        /* Styling for table headers and cells */
+        th, td {
+            padding: 12px 15px; /* Add padding inside table cells */
+            text-align: left; /* Align text to the left for better readability */
+            border: 1px solid #ddd; /* Add light border around cells */
+        }
+
+        /* Styling for table headers */
+        th {
+            background-color: #007bff; /* Blue background for headers */
+            color: white; /* White text color for better contrast */
+            text-transform: uppercase; /* Transform text to uppercase for emphasis */
+        }
+
+        /* Alternate row styling for better readability */
+        tr:nth-child(even) {
+            background-color: #f9f9f9; /* Light background for even rows */
+        }
+
+        /* Highlight row on hover */
+        tr:hover {
+            background-color: #f1f1f1; /* Lighter background on hover for better interaction feedback */
+        }
+
+        /* Styling for action links */
+        .actions a {
+            display: inline-block; /* Ensure buttons are inline */
+            text-decoration: none; /* Remove underline from links */
+            font-weight: bold; /* Bold text for emphasis */
+            color: white; /* White text color */
+            padding: 10px 15px; /* Add padding inside the links */
+            border-radius: 5px; /* Add rounded corners */
+            margin-right: 10px; /* Add space between buttons */
+        }
+
+        /* Styling for the edit link */
+        .actions .edit {
+            background-color: #28a745; /* Green background for the edit link */
+        }
+
+        /* Styling for the delete link */
+        .actions .delete {
+            background-color: #dc3545; /* Red background for the delete link */
+        }
+
+        /* Styling for the navigation section */
+        .navigation {
+            text-align: center; /* Center-align the navigation links */
+            margin-top: 30px; /* Add space above the navigation section */
+        }
+
+        /* Styling for individual navigation links */
+        .navigation a {
+            text-decoration: none; /* Remove underline */
+            color: #007bff; /* Blue text color */
+            font-weight: bold; /* Bold text for emphasis */
+        }
+
+        /* Add underline on hover for navigation links */
+        .navigation a:hover {
+            text-decoration: underline; /* Add underline for better user feedback */
+        }
+    </style>
+</head>
+<body>
+    <!-- Main container for competition entries -->
+    <div class="container">
+        <!-- Dynamic heading based on competition type -->
+        <h1>{{ competition_type.capitalize() }} Competition Entries</h1>
+        <!-- Table to display competition entries -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th> <!-- Column for entry ID -->
+                    <th>First Name</th> <!-- Column for first name -->
+                    <th>Last Name</th> <!-- Column for last name -->
+                    <th>Email</th> <!-- Column for email -->
+                    <th>Phone</th> <!-- Column for phone number -->
+                    <th>Actions</th> <!-- Column for action links -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through entries and display their data -->
+                {% for entry in entries %}
+                <tr>
+                    <td>{{ entry['id'][:8] }}...</td> <!-- Display shortened ID -->
+                    <td>{{ entry['first_name'] }}</td> <!-- Display first name -->
+                    <td>{{ entry['last_name'] }}</td> <!-- Display last name -->
+                    <td>{{ entry['email'] }}</td> <!-- Display email -->
+                    <td>{{ entry['phone'] }}</td> <!-- Display phone number -->
+                    <td class="actions"> <!-- Action links for edit and delete -->
+                        <a class="edit" href="/edit/{{ competition_type }}/{{ entry['id'] }}">Edit</a> <!-- Edit link -->
+                        <a class="delete" href="/delete/{{ competition_type }}/{{ entry['id'] }}">Delete</a> <!-- Delete link -->
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- Navigation links for returning to the main page -->
+        <div class="navigation">
+            <a href="/">Back to Competition Main Page</a> <!-- Link to main page -->
+        </div>
+    </div>
+</body>
+</html>

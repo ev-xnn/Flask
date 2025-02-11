@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block head %}
+<h1>Home</h1>
+{% endblock %}
+{% block content %}
+    <div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+    <!-- Indicators/dots -->
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="4"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="5"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="6"></button>
+    </div>
+
+    <!-- The slideshow/carousel -->
+    <!-- The slideshow/carousel -->
+<div class="carousel-inner">
+    <div class="carousel-item active">
+        <img src="{{ url_for('static', filename='Creativity and Innovation.jpg') }}" alt="Creativity and Innovation">
+        <div class="carousel-caption">
+            <h3>Creativity and Innovation</h3>
+            <p>We embrace creativity as the core of our identity. By encouraging innovative thinking, Harmonique ensures that artists and staff have the freedom to experiment and break boundaries, creating exceptional art and experiences for our audiences.</p>
+        </div>
+    </div>
+
+    <div class="carousel-item">
+        <img src="{{ url_for('static', filename='Sustainability.jpg') }}" alt="Sustainability">
+        <div class="carousel-caption">
+            <h3>Sustainability</h3>
+            <p>Sustainability is at the heart of our mission. From paperless operations to recycled merchandise, we integrate environmentally responsible practices into every aspect of our business, working toward a greener future.</p>
+        </div>
+    </div>
+
+    <div class="carousel-item">
+        <img src="{{ url_for('static', filename='Empowerment.jpg') }}" alt="Empowerment">
+        <div class="carousel-caption">
+            <h3>Empowerment</h3>
+            <p>Harmonique is dedicated to empowering its artists and employees. By fostering an environment of trust, collaboration, and respect, we ensure that everyone feels valued and motivated to achieve their full potential.</p>
+        </div>
+    </div>
+
+    <div class="carousel-item">
+        <img src="{{ url_for('static', filename='Excellence.jpg') }}" alt="Excellence">
+        <div class="carousel-caption">
+            <h3>Excellence</h3>
+            <p>Striving for excellence is integral to Harmonique’s ethos. From artist training to merchandise production, we ensure the highest quality in everything we do, delivering unparalleled experiences to our fans and customers.</p>
+        </div>
+    </div>
+
+    <div class="carousel-item">
+        <img src="{{ url_for('static', filename='Community Building.jpg') }}" alt="Community Building">
+        <div class="carousel-caption">
+            <h3>Community Building</h3>
+            <p>We believe in the power of connection. By supporting our artists and engaging with fans, Harmonique fosters a sense of belonging and unity, bridging the gap between creativity and meaningful relationships.</p>
+        </div>
+    </div>
+
+    <div class="carousel-item">
+        <img src="{{ url_for('static', filename='Education.jpg') }}" alt="Education">
+        <div class="carousel-caption">
+            <h3>Education and Awareness</h3>
+            <p>Harmonique is committed to educating its community about important issues, such as sustainability and artistic integrity. Through workshops, campaigns, and active communication, we aim to raise awareness and inspire positive change.</p>
+        </div>
+    </div>
+
+    <div class="carousel-item">
+        <img src="{{ url_for('static', filename='Integrity.jpg') }}" alt="Integrity">
+        <div class="carousel-caption">
+            <h3>Integrity</h3>
+            <p>Transparency and ethical behavior define who we are. Harmonique prioritizes fairness, honesty, and accountability in all aspects of our operations, ensuring we remain true to our values and mission.</p>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Left and right controls/icons -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+{% endblock %}
